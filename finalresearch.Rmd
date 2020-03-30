@@ -1,0 +1,915 @@
+---
+title: "Public Opinion About Gun Control"
+subtitle: "Self-interest, ideology, and mass shootings"
+author: 
+- Min Jeong Oh (470151813)
+- DATA5207 Final Research, Semeter 1 2018
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+#1. Introduction
+
+On the 28th of May, Dimitrios Pagourtzis, a 17-year-old student, opened fire at Santa Fe High School in Texas with a shotgun and .38 revolver owned by his father. Pagourtzis killed 10 and injured 13 others before surrendering to authorities. It was only 2 months after another high school shooting in Parkland, Florida where 17 died and 17 injured. 
+
+Voices demanding more strict laws have been raised after these tragedies. Even though the lawmakers have responded through federal regulations such as the Brady Bill[^1], the ban on assault weapons, and state regulations such as instant checks, waiting periods, and purchasing permits, this problem does not seem to be solved with a simple “gun violence = gun control law” equation. Yet public opinions on gun control issue have been divided the American society for decades. Beyond the debate of the effect of gun control toward crime rate, there is underlying
+historical and cultural differences mingled in this issue. 
+
+This research is divided into two parts. First, I examine two main theoretical perspectives on the public opinions toward gun control and select variables which are related to these theories. I then test the theories by modelling the relationship between the public opinions and the  selected variables.
+In the second part of the paper, I examine the influence of mass shooting incidents toward the public opinion on gun control issue in order to see if mass shooing events alter the public opinion. With the drastic increase of the number of high profile public mass shootings in 2017[^2] and already above-average number of incidents in 2018, news media published poll results that showed surged support for gun control. (Shepard, 2018; Gray, 2018) I empirically studied the relationship between the mass shootings and public opinion toward gun control. 
+
+I conclude by discussing the implantations of this study along with the limitations and suggestions for future study. 
+
+[^1]: The Brady Handgun Violence Prevention Act (Public Law 103–159, 107 Stat. 1536, enacted November 30, 1993)
+[^2]: US Mass Shootings, 1982-2018: Data From Mother Jones’ Investigation. The average number of mass shootings from 1982 to 2018 (including only Jan to June for 2018) is 2.94. The number of incidents in 2017 was 11, and there have been 5 mass shootings in 2018. 
+
+\vspace{6mm}
+
+#2. Literature review
+
+There are two main theoretical perspectives on the public opinions toward gun control law: instrumentalist view and egalitarian view.
+
+##2.1 Instrumentalist view
+
+Instrumentalist view explains the public opinions on the gun control as a self-interest or crime control issue. It is rather straight forward explanation. It argues that gun owners oppose gun control because it is against their self-interest. Also, people support or oppose gun control based upon perceptions of those policies’ ability to prevent crimes (Wozniak, 2015). Wolpert and Gimpel (1998) tested if gun owners exhibit distinctive policy preferences with 1981-1993 CBS poll data, and found that self-interest (gun ownership) strongly influences public preferences on gun control. They also identify a group of individuals who theoretically have a personal stake in the gun control issue which is crime victims. Those who have been victimised by crime may believe that gun control regulations reduce crime. Smith (1980) found the tendency to support control caused by increased fear of crime. Other studies found there was no relationship between crime victimisation and the attitudes on gun control (Kleck, 1996; Sears et al., 1980). 
+
+##2.2 Egalitarian view
+Egalitarian view explains the opposition to gun control regulations (Semet & Ansolabehere, 2011). It argues that guns symbolise the country’s founders’ beliefs that guns can defend them from tyranny, based on which the Second Amendment was framed (Robertson, 2012). Some view the gun control issues as tensions between the power of government and the autonomy of individual (DeGrazia & Hunt, 2016) or concern for the collective good versus individual freedom (Celinska, 2007).
+Empirical studies found that there has been partisan division of public opinions on the gun control issue (“Division Over Gun Control”, 2011). Lindaman and Haider-Markel (2002) also showed significant polarisation between Democrats and Republicans on the gun control issue. 
+
+\vspace{6mm}
+
+#3. Data and methodology
+
+##3.1 Data and variables
+
+I used General Social Survey (GSS) (1972-2016) data from NORC University of Chicago. For the dependent variable, I used a variable where respondents indicated if they favour or oppose a law which would require a person to obtain a police permit before he or she could buy a gun. I also used the respondents’ opinions on the handgun restriction as an independent variable only for the analysis of year 2004 because this data was only collected in that year. It indicates whether the respondent more strict law or less strict law on handguns. 
+
+Dependent variables are carefully selected to test the two different theoretical explanations. In order to examine the influence of self-interest, I selected respondents’ gun ownership (1980-2016), experience of being threatened by guns (1973-1994),  and respondents opinion on whether more restrictions on handgun decrease or increase crime (2004). 
+In order to capture the influence of ideological and symbolic view on public opinion, I included political and demographical factors as independent variables. They are people’s party affiliation, age, gender, race, education, region where they lived, and income.
+
+For the mass shootings analysis, I used Mother Jones mass shootings data.
+There are different definitions of mass shootings.(Figure 1)
+
+![Source: https://www.rand.org/research/gun-policy/analysis/supplementary/mass-shootings.html](/Users/minoh/Documents/Usyd2018-1/DataAnalysis/Research/Screen Shot 2018-06-18 at 9.47.13 pm.png)
+
+There are several reasons why I used the data from Mother Jones. First, it has wide range of data from 1982 to 2018. Also it uses the most conservative definition resulting in very high profile public mass shootings which were covered by most media , so the news about the mass shootings could reach most audience. These characteristics were suitable to assess the effect of mass shooting incidents toward public opinion shift, 
+
+Since the GSS data contains the survey data up until 2016, I used additional public opinion data from Gallop survey (1990-2018) to test influence of mass shooting incidents on more recent dataset.
+
+##3.2 Methodology
+
+Since the dependent variable of our interest, “public opinion on the gun control law”, is a categorical (binary) variable which contains only ‘Favor’ and ‘Oppose’, ordinary least squares regression cannot be used as assumptions of normality of the responses and homoscedasticity of the residuals will be violated. The probability of ‘Favor’ is modelled as a function a of age, gender, race, education, region, income, party affiliation, gun ownership and the experience of being threatened by gun. By transforming the dependent variable with Logit function, the relationship can be expressed as a linear function: 
+
+\vspace{3mm}
+
+$$\log\left( \frac{\pi}{1-\pi} \right) = \alpha + \beta_1 Age + \beta_2 Sex + \beta_3 Race + \beta_4 Education + \beta_5 Residence16 +  \beta_6 Region16 + \beta_7 Region +  $$
+$$ \beta_8 Income + \beta_9 Party + \beta_{10} GunOwnership + \beta_{11} GunThreatened $$
+
+\vspace{3mm}
+
+After estimating the parameters, we can calculate the probability of ‘Favor’ by transforming back with the inverse logit function.
+I first test the whole dataset from 1972 to 2016 altogether with logistic regression, and then run separate logistic regression yearly to see the change of parameters over time.
+With the mass shooting data, I run linear regression with the independent variables, total number of victims of mass shootings and the number of incidents each year. First, I ran the regression with GSS data (1982-2016) by matching each year's percentage of favor in gun control opinion data with each year's mass shooting data. However, surveys might have not been conducted after all mass shootings happened each year. Also, there migh be delays of changing the opinion after mass shooting events. 
+
+$$Favor_{year=n} = \alpha + \beta_1 ToalNumberOfVictims_{year=n} + \beta_2 NumberOfMassShootings_{year=n} + \epsilon $$
+So I created another linear model which fit previous year's mass shooting data with the percentage of favor in gun control.
+$$Favor_{year=n} = \alpha + \beta_1 ToalNumberOfVictims_{year=n-1} + \beta_2 NumberOfMassShootings_{year=n-1} + \epsilon $$
+
+\vspace{3mm}
+
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(foreign)
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(car)
+library(arm)
+library(tidyr)
+```
+
+```{r import data, message=FALSE, warning=FALSE, echo=FALSE}
+
+# Read data
+dataset = read.spss("/Users/minoh/Documents/Usyd2018-1/DataAnalysis/GSS7216_R3.sav", to.data.frame=TRUE)
+shooting <- read.csv("/Users/minoh/Documents/Usyd2018-1/DataAnalysis/Research/Mother Jones - Mass Shootings Database, 1982 - 2018 - Sheet1.csv")
+
+big.dataset = dataset %>% 
+  dplyr::select(YEAR, ID, CHILDS, AGE, AGEKDBRN,  EDUC, PAEDUC, MAEDUC, SPEDUC, COEDUC, CODEG, DEGREE, SEX, RACE, RES16, REG16, REGION, ATTRELIG, RELIGID,XNORCSIZ, RELID1, CATHID, PARTYID, INCOME, RINCOME, INCOME72, INCOME77, RINCOM77, INCOME82, RINCOM82, INCOME86, RINCOM86, INCOME91, RINCOM91, INCOME98, RINCOM98, INCOME06, RINCOM06, INCOME16, RINCOM16, POLVIEWS, POLVIEWY, POLVIEWX, NATCRIME, NATCRIMZ, CRIMIMP, CRIMINFO, CRIMFIRM, LAWIMP, LAWINFO, LAWFIRM, GUNLAW, GUNIMP, GUNINFO, GUNFIRM, GUN, GUNAGE, GUNNUM, OWNGUN, PISTOL, SHOTGUN, RIFLE, ROWNGUN, HGUNLAW, HGUNCRIM, GUNSALES, GUNSDRUG, SEMIGUNS, GUNS911, RIFLES50, OTHGUNS, GUNSDRNK, GUN, GUNNUM )
+
+small.dataset = big.dataset %>% 
+  dplyr::select(YEAR, ID, AGE, SEX, RACE, EDUC, DEGREE, RES16, REG16, REGION, INCOME, PARTYID, GUNLAW, OWNGUN, ROWNGUN, GUN, GUNNUM)
+
+```
+
+```{r clean data, message=FALSE, warning=FALSE, echo=FALSE}
+# GSS data
+small.dataset = small.dataset[!(is.na(small.dataset$GUNLAW)),]
+
+small.dataset$PARTY <- recode(small.dataset$PARTYID, "c('STRONG DEMOCRAT', 'NOT STR DEMOCRAT') = 'Democrat';
+                          c('IND,NEAR DEM', 'INDEPENDENT', 'IND,NEAR REP') = 'Independent';
+                          c('NOT STR REPUBLICAN', 'STRONG REPUBLICAN') = 'Republican';
+                            'OTHER PARTY' = NA")
+small.dataset$GUNSUPPORT <- as.numeric(as.character(recode(small.dataset$GUNLAW,
+                                                         "'FAVOR' = 1;
+                                                         'OPPOSE' = 0;
+                                                         ")))
+
+small.dataset$REG16 <- recode(small.dataset$REG16, "'FOREIGN' = NA")
+levels(small.dataset$REG16) <- c("NEW ENGLAND","MIDDLE ATLANTIC", "E. NOR. CENTRAL", "W. NOR. CENTRAL", "SOUTH ATLANTIC",  "E. SOU. CENTRAL", "W. SOU. CENTRAL", "MOUNTAIN" ,"PACIFIC")
+small.dataset$AGENUM <- as.numeric(as.character(recode(small.dataset$AGE, "'89 OR OLDER' = '89'")))
+## Age standardised
+small.dataset$Z.AGE <- scale(small.dataset$AGENUM,
+       scale = (sd(small.dataset$AGENUM, na.rm=TRUE)*2)
+       )
+small.dataset$education <- recode(small.dataset$EDUC, "
+                          c('0', '1', '2', '3', '4', '5','6', '7', '8') = 'LT High';
+                          c('9', '10', '11', '12') = 'HighSchool';
+                          c('13', '14', '15', '16') = 'College';
+                          c('17', '18', '19', '20') = 'Graduate';")
+levels(small.dataset$education) <- c("LT High",
+                                     "HighSchool",
+                                     "College",
+                                     "Graduate")
+
+```
+
+
+```{r GSS data exploration, message=FALSE, warning=FALSE, echo=FALSE}
+# Group by year
+support.proportions <- group_by(small.dataset, YEAR) %>% 
+  mutate(Favor = mean(GUNLAW == 'FAVOR'), Oppose = mean(GUNLAW == 'OPPOSE'))
+
+gunconrtolsupport.proportions <- group_by(small.dataset, YEAR) %>% 
+  summarize(Favor = mean(GUNLAW == 'FAVOR', na.rm=TRUE), Oppose = mean(GUNLAW == 'OPPOSE', na.rm=TRUE))
+
+#gunconrtolsupport.proportions[which.max(gunconrtolsupport.proportions$Favor),]
+#gunconrtolsupport.proportions[which.min(gunconrtolsupport.proportions$Favor),]
+
+# Group by year and gunlaw - calculate the proportion of each party in the total 'Favor' and 'Oppose' by year
+party.proportions <- group_by(support.proportions, YEAR, GUNLAW) %>% 
+  mutate(prop.democrat = mean(PARTY == 'Democrat', na.rm=TRUE), prop.independent = mean(PARTY == 'Independent', na.rm=TRUE), prop.republican = mean(PARTY == 'Republican', na.rm=TRUE))
+
+# Group by year and party - calculate the proportion of 'Favor' and 'Oppose' in each party by year
+eachparty.proportions <- group_by(party.proportions, YEAR, PARTY) %>% 
+  summarize(Favor.party = mean(GUNLAW == 'FAVOR', na.rm=TRUE), Oppose.party = mean(GUNLAW == 'OPPOSE', na.rm=TRUE))
+eachparty.proportions = eachparty.proportions[!(is.na(eachparty.proportions$PARTY)),]
+
+# Favor/oppose people proportion
+favor.data <- party.proportions[party.proportions$GUNLAW == 'FAVOR', ]
+oppose.data <- party.proportions[party.proportions$GUNLAW == 'OPPOSE', ]
+
+# Calculate party proportion
+favor.data$Democrat <- favor.data$prop.democrat * favor.data$Favor
+favor.data$Independent <- favor.data$prop.independent * favor.data$Favor
+favor.data$Republican <- favor.data$prop.republican * favor.data$Favor
+oppose.data$Democrat <- oppose.data$prop.democrat * oppose.data$Oppose
+oppose.data$Independent <- oppose.data$prop.independent * oppose.data$Oppose
+oppose.data$Republican <- oppose.data$prop.republican * oppose.data$Oppose
+
+
+
+# Group by gun ownership
+own.proportion <-  group_by(support.proportions, YEAR, GUNLAW) %>% 
+  mutate(prop.own = mean(ROWNGUN == 'YES', na.rm=TRUE), prop.ownno = mean(ROWNGUN == 'NO', na.rm=TRUE), prop.ownrefus = mean(ROWNGUN == 'REFUSED', na.rm=TRUE))
+
+own.favor.data <- own.proportion[own.proportion$GUNLAW == 'FAVOR', ]
+own.oppose.data <- own.proportion[own.proportion$GUNLAW == 'OPPOSE', ]
+
+own.favor.data$Own <- own.favor.data$prop.own * own.favor.data$Favor
+own.favor.data$DoNotOwn <- own.favor.data$prop.ownno * own.favor.data$Favor
+own.favor.data$Refused <- own.favor.data$prop.ownrefus * own.favor.data$Favor
+own.oppose.data$Own <- own.oppose.data$prop.own * own.oppose.data$Oppose
+own.oppose.data$DoNotOwn <- own.oppose.data$prop.ownno * own.oppose.data$Oppose
+own.oppose.data$Refused <- own.oppose.data$prop.ownrefus * own.oppose.data$Oppose
+
+
+# Group by year and ownership - calculate the proportion of 'Favor' and 'Oppose' by ownership and by year
+eachown.proportions <- group_by(own.proportion, YEAR, ROWNGUN) %>% 
+  summarize(Favor.own = mean(GUNLAW == 'FAVOR', na.rm=TRUE), Oppose.own = mean(GUNLAW == 'OPPOSE', na.rm=TRUE))
+eachown.proportions = eachown.proportions[!(is.na(eachown.proportions$ROWNGUN)),]
+
+```
+
+#4. Results and Implications
+
+##4.1 Data exploration
+
+The trend of the ratio of favour and opposition toward gun control law is plotted in the Graph 1.  
+The highest favour rate was 83.6% in 1998 and the lowest rate was 70.7% in 1980. Graph 2 and Graph 3 show the composition of 'Favor' and 'Oppose' opinions with three different party affilications. Graph 4 indicates the proportion of people who favored the gun control law among each parties. Graph 5 and Graph 6 show the composition of 'Favor' and 'Oppose' opinions with three different response to the gun ownership question. Graph 7 indicates the proportion of favor opinions among different gun ownership status. These graphs show clear differenc in the public opinion between Democrats and Republicans especially towards 2016. The gun ownership graphs do not cleary show that people who own guns support gun control less than people who don't guns. It rather shows the opposite. This might suggest the ideologial impact is bigger than self-interest impact on public opinion. Yet plotting the data won't tell many details. Logistic regression results show the effects of each variables in more details. 
+
+```{r plot GSS data variables, message=FALSE, warning=FALSE, echo=FALSE}
+# By year
+favor.oppose.byyear <- gather(support.proportions,
+                           value = "Ratio",
+                           key = "Gun_Control",
+                           Favor, Oppose)
+ggplot(favor.oppose.byyear,
+       aes(x=YEAR,
+           y=Ratio,
+           color=Gun_Control)) +
+  geom_line()
+
+# Party by year
+favor.party.byyear <- gather(favor.data,
+                           value = "Ratio",
+                           key = "Favor_gun_control",
+                           Democrat, Independent, Republican)
+ggplot(favor.party.byyear,
+       aes(x=YEAR,
+           y=Ratio,
+           color=Favor_gun_control)) +
+  geom_line()
+
+oppose.party.byyear <- gather(oppose.data,
+                           value = "Ratio",
+                           key = "Oppose_gun_control",
+                           Democrat, Independent, Republican)
+ggplot(oppose.party.byyear,
+       aes(x=YEAR,
+           y=Ratio,
+           color=Oppose_gun_control)) +
+  geom_line()
+
+# Proportions of favor in each party
+ggplot(eachparty.proportions, aes(x=YEAR, color=PARTY, y=Favor.party)) + 
+  geom_line(stat = "identity") 
+
+# Gun ownership
+favor.own.byyear <- gather(own.favor.data,
+                           value = "Ratio",
+                           key = "Favor_gun_control",
+                           Own, DoNotOwn, Refused)
+ggplot(favor.own.byyear,
+       aes(x=YEAR,
+           y=Ratio,
+           color=Favor_gun_control)) +
+  geom_line()
+
+oppose.own.byyear <- gather(own.oppose.data,
+                           value = "Ratio",
+                           key = "Oppose_gun_control",
+                           Own, DoNotOwn, Refused)
+ggplot(oppose.own.byyear,
+       aes(x=YEAR,
+           y=Ratio,
+           color=Oppose_gun_control)) +
+  geom_line()
+
+# Proportions of favor in each ownership status
+ggplot(eachown.proportions, aes(x=YEAR, color=ROWNGUN, y=Favor.own)) + 
+  geom_line(stat = "identity") 
+```
+
+
+  
+##4.2 Logistic regression model results
+
+The summary of logistic regression model is shown below. 
+
+
+```{r model, message=FALSE, warning=FALSE, echo=FALSE}
+#library(stargazer)
+library(jtools)
+gunsupport.model1 <- glm(GUNSUPPORT ~ Z.AGE + SEX + RACE + education + RES16 + REG16 + REGION + INCOME + PARTY + ROWNGUN + GUN ,family=binomial(link="logit"), data = small.dataset)
+
+display(gunsupport.model1)
+#export_summs(gunsupport.model1,
+#model.names = c("Model 1 "),
+#scale = TRUE, robust = TRUE)
+```
+
+The difference between residual deviance and null deviance is 297.5 which indicates the prdictors provide more than randomo noise and offer some useful information. The varialbes that have significant coefficients (far from 0 more than twice of standard error) include SEXFEMALE, RACEBLACK, RACEOTHER, RES16BIG-CITY SUBURB, PARTYIndependent, PARTYRepublican and ROWNGUNNO. Being female rather than being male, being black or other race than white, having lived in the big city suburb rather than country, being Democrat rather than Repulican or Indepenent, and not owning a gun, people are more likely to support gun control law. This shows that both self-interest varialbe(gun ownership) and ideology variable (party) are good predictors for public opinions for the gun control issue.
+
+The figures below are each variable's coeffeicient by year and corresponding standard errors. In order to include the GUN variable, only partial data (1980, 1984, 1987, 1988, 1989, 1990, 1991, 1993, 1994) is included. This variable shows if respondents were ever threatened by gun which is another variable for self-interest. Coeffients that its absolute values are smaller than 1 standard error are excluded. 
+There are not many data points after excluding so many, but having lived in citi suburb when age 16, party affiliation, gun ownership are still good predictors for individual year groups. Be threatened by gun had positive effect on the support for gun control in the two year groups and negative effect on three. 
+```{r split dataset into yearly data (Incldue GUN varialbe), message=FALSE, warning=FALSE, echo=FALSE}
+library(reshape)
+library(gtools)
+small.dataset$year.order <- as.numeric(as.factor(small.dataset$YEAR))
+#table(small.dataset$year.order,small.dataset$YEAR)
+coef.year <- data.frame(matrix(NA_real_, nrow = 1, ncol = 45))
+se.year <- data.frame(matrix(NA_real_, nrow = 1, ncol = 45))
+colnames(coef.year) <- c("(Intercept)","Z.AGE", "SEXFEMALE", "RACEBLACK", "RACEOTHER", "educationHighSchool", "educationCollege", "educationGraduate", "RES16FARM", "RES16TOWN LT 50000", "RES1650000 TO 250000", "RES16BIG-CITY SUBURB", "RES16CITY GT 250000", "REG16MIDDLE ATLANTIC", "REG16E. NOR. CENTRAL",  "REG16W. NOR. CENTRAL",  "REG16SOUTH ATLANTIC", "REG16E. SOU. CENTRAL", "REG16W. SOU. CENTRAL",  "REG16MOUNTAIN", "REG16PACIFIC", "REGIONMIDDLE ATLANTIC", "REGIONE. NOR. CENTRAL", "REGIONW. NOR. CENTRAL","REGIONSOUTH ATLANTIC", "REGIONE. SOU. CENTRAL", "REGIONW. SOU. CENTRAL", "REGIONMOUNTAIN", "REGIONPACIFIC", "INCOME$1000 TO 2999", "INCOME$3000 TO 3999", "INCOME$4000 TO 4999", "INCOME$5000 TO 5999",  "INCOME$6000 TO 6999",  "INCOME$7000 TO 7999",  "INCOME$8000 TO 9999", "INCOME$10000 - 14999",  "INCOME$15000 - 19999",  "INCOME$20000 - 24999" , "INCOME$25000 OR MORE" , "PARTYIndependent",  "PARTYRepublican", "ROWNGUNNO" ,"ROWNGUNREFUSED", "GUNNO")
+colnames(se.year) <- c("(Intercept)","Z.AGE", "SEXFEMALE", "RACEBLACK", "RACEOTHER", "educationHighSchool", "educationCollege", "educationGraduate", "RES16FARM", "RES16TOWN LT 50000", "RES1650000 TO 250000", "RES16BIG-CITY SUBURB", "RES16CITY GT 250000", "REG16MIDDLE ATLANTIC", "REG16E. NOR. CENTRAL",  "REG16W. NOR. CENTRAL",  "REG16SOUTH ATLANTIC", "REG16E. SOU. CENTRAL", "REG16W. SOU. CENTRAL",  "REG16MOUNTAIN", "REG16PACIFIC", "REGIONMIDDLE ATLANTIC", "REGIONE. NOR. CENTRAL", "REGIONW. NOR. CENTRAL","REGIONSOUTH ATLANTIC", "REGIONE. SOU. CENTRAL", "REGIONW. SOU. CENTRAL", "REGIONMOUNTAIN", "REGIONPACIFIC", "INCOME$1000 TO 2999", "INCOME$3000 TO 3999", "INCOME$4000 TO 4999", "INCOME$5000 TO 5999",  "INCOME$6000 TO 6999",  "INCOME$7000 TO 7999",  "INCOME$8000 TO 9999", "INCOME$10000 - 14999",  "INCOME$15000 - 19999",  "INCOME$20000 - 24999" , "INCOME$25000 OR MORE" , "PARTYIndependent",  "PARTYRepublican", "ROWNGUNNO" ,"ROWNGUNREFUSED", "GUNNO")
+```
+
+```{r,  message=FALSE, warning=FALSE, echo=FALSE}
+for(i in 1:28){
+  model.data <- data.frame(subset(small.dataset, year.order == i))
+  if (length(unique(model.data$SEX)) >1 && length(unique(model.data$RACE)) > 1 && length(unique(model.data$education)) > 1 && 
+      length(unique(model.data$RES16)) > 1 && length(unique(model.data$REG16)) > 1 &&
+      length(unique(model.data$REGION)) > 1 && length(unique(model.data$INCOME)) > 1 && length(unique(model.data$PARTY)) > 1 &&
+      length(unique(model.data$ROWNGUN)) > 1 &&  length(unique(model.data$GUN)) > 1 ) {
+    
+        coef.year.new <- data.frame(summary(glm(GUNSUPPORT ~ Z.AGE + SEX + RACE + education + RES16 + REG16 + REGION + INCOME + PARTY + ROWNGUN + GUN, family=binomial(link="logit"), data=model.data))$coefficients[,1])
+        coef.year.new <- t(coef.year.new)
+    
+        se.year.new <- data.frame(summary(glm(GUNSUPPORT ~ Z.AGE + SEX + RACE + education + RES16 + REG16 + REGION + INCOME + PARTY + ROWNGUN + GUN, family=binomial(link="logit"), data=model.data))$coefficients[,2])
+        se.year.new <- t(se.year.new)
+    
+        coef.year <- smartbind(coef.year, coef.year.new, fill=NA)
+        se.year <- smartbind(se.year, se.year.new, fill=NA)
+       
+  } else {
+    #print(i) #1,2,3,4,5,6, 8, 10, 19-28
+  }
+  
+}
+```
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+coef.year <- coef.year[-1,]
+se.year <- se.year[-1,]
+coef.year$year <- as.numeric(c(1980, 1984, 1987, 1988, 1989, 1990, 1991, 1993, 1994))
+
+# split in groups for plotting
+coef.year.group1 <- coef.year[,1:9]
+coef.year.group2 <- coef.year[,10:18]
+coef.year.group3 <- coef.year[,19:27]
+coef.year.group4 <- coef.year[,28:36]
+coef.year.group5 <- coef.year[,37:45]
+se.year.group1 <- se.year[,1:9]
+se.year.group2 <- se.year[,10:18]
+se.year.group3 <- se.year[,19:27]
+se.year.group4 <- se.year[,28:36]
+se.year.group5 <- se.year[,37:45]
+
+coef.year.list <- list(coef.year.group1, coef.year.group2, coef.year.group3, coef.year.group4, coef.year.group5)
+se.year.list <- list(se.year.group1, se.year.group2, se.year.group3, se.year.group4, se.year.group5)
+
+lev1 <- c("Intercept", "Age", "Sex: Female", "Race: Black", "Race: Other", "Edu: HighSchool", "Edu: College", "Edu: Graduate", "Res16: Farm") 
+lev2 <- c("Res16: Small Town", "Res16: Big Town","Res16: City Suburb",  "Res16: Bit City", "Reg16: Middle Atlantic", "Reg16: E.NOR. Central",  "Reg16: W.NOR. Central", "Reg16: South Atlantic", "Reg16: E.SOU. Central")
+lev3 <- c("Reg16: W.SOU. Central", "Reg16: Mountain",  "Reg16: Pacific", "Reg: Middle Atlantic", "Reg: E.NOR. Central",  "Reg: W.NOR. Central", "Reg: South Atlantic", "Reg: E.SOU. Central","Reg: W.SOU. Central")
+lev4 <- c( "Reg: Mountain", "Reg: Pacific", "Income: $1000 TO 2999", "Income: $3000 TO 3999", "Income: $4000 TO 4999", "Income: $5000 TO 5999", "Income: $6000 TO 6999", "Income: $7000 TO 7999", "Income: $8000 TO 9999")
+lev5 <- c( "Income: $10000 - 14999",  "Income: $15000 - 19999",  "Income: $20000 - 24999",  "Income: $25000 OR MORE",  "Party: Independent", "Party: Republican","OwnGun: No", "OwnGun: Refused", "GunThreatened: No")
+
+lev.list <- list(lev1, lev2, lev3, lev4, lev5)
+
+for (i in 1:5) {
+  coef.year.list[[i]]$year <- coef.year$year
+  coef.year.list[[i]] <- melt(coef.year.list[[i]], id.vars="year")
+  coef.year.list[[i]]$se <- melt(se.year.list[[i]])[,2]
+  coef.year.list[[i]]$upper.ci <- coef.year.list[[i]]$value + coef.year.list[[i]]$se 
+  coef.year.list[[i]]$lower.ci <- coef.year.list[[i]]$value - coef.year.list[[i]]$se
+  levels(coef.year.list[[i]]$variable) <- lev.list[[i]]
+
+  coef.year.list[[i]] <- coef.year.list[[i]][!(is.na(coef.year.list[[i]]$value)),]
+  coef.year.list[[i]] <- coef.year.list[[i]][abs(coef.year.list[[i]]$value) > coef.year.list[[i]]$se * 1 , ]
+}
+
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+ggplot(coef.year.list[[1]], aes(year, value)) + 
+  geom_point(alpha=1, colour="black", size=1) +   
+  geom_errorbar(aes(ymin=lower.ci,ymax=upper.ci),width=0) +
+  labs(x = "Year", y = "Logistic regression coefficients") +
+  scale_x_continuous(breaks=c(1982, 1998, 2014), limits=c(1980,2016)) +
+  scale_y_continuous(breaks=c(-3, -2, -1, 0, 1, 2, 3),minor_breaks=c(0.0001)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor.x = element_blank(), 
+        panel.grid.minor.y = element_line(colour="grey", size=0.25), 
+        legend.position="none", 
+        strip.text.x = element_text(size=10, vjust=.5), 
+        strip.background = element_blank(), 
+        axis.title.x = element_text(size=11, face="bold", vjust=-.75), 
+        axis.title.y = element_text(size=11, face="bold", vjust=1.5), 
+        axis.text.x = element_text(size=9, vjust=1), 
+        axis.text.y = element_text(size=9, hjust=1)) +
+  facet_wrap( ~ variable, nrow=2)
+
+ggplot(coef.year.list[[2]], aes(year, value)) + 
+  geom_point(alpha=1, colour="black", size=1) +   
+  geom_errorbar(aes(ymin=lower.ci,ymax=upper.ci),width=0) +
+  labs(x = "Year", y = "Logistic regression coefficients") +
+  scale_x_continuous(breaks=c(1982, 1998, 2014), limits=c(1980,2016)) +
+  scale_y_continuous(breaks=c(-3, -2, -1, 0, 1, 2, 3),minor_breaks=c(0.0001)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor.x = element_blank(), 
+        panel.grid.minor.y = element_line(colour="grey", size=0.25), 
+        legend.position="none", 
+        strip.text.x = element_text(size=8, vjust=.5), 
+        strip.background = element_blank(), 
+        axis.title.x = element_text(size=11, face="bold", vjust=-.75), 
+        axis.title.y = element_text(size=11, face="bold", vjust=1.5), 
+        axis.text.x = element_text(size=9, vjust=1), 
+        axis.text.y = element_text(size=9, hjust=1)) +
+  facet_wrap( ~ variable, nrow=2)
+
+ggplot(coef.year.list[[3]], aes(year, value)) + 
+  geom_point(alpha=1, colour="black", size=1) +   
+  geom_errorbar(aes(ymin=lower.ci,ymax=upper.ci),width=0) +
+  labs(x = "Year", y = "Logistic regression coefficients") +
+  scale_x_continuous(breaks=c(1982, 1998, 2014), limits=c(1980,2016)) +
+  scale_y_continuous(breaks=c(-3, -2, -1, 0, 1, 2, 3),minor_breaks=c(0.0001)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor.x = element_blank(), 
+        panel.grid.minor.y = element_line(colour="grey", size=0.25), 
+        legend.position="none", 
+        strip.text.x = element_text(size=8, vjust=.5), 
+        strip.background = element_blank(), 
+        axis.title.x = element_text(size=11, face="bold", vjust=-.75), 
+        axis.title.y = element_text(size=11, face="bold", vjust=1.5), 
+        axis.text.x = element_text(size=9, vjust=1), 
+        axis.text.y = element_text(size=9, hjust=1)) +
+  facet_wrap( ~ variable, nrow=2)
+
+ggplot(coef.year.list[[4]], aes(year, value)) + 
+  geom_point(alpha=1, colour="black", size=1) +   
+  geom_errorbar(aes(ymin=lower.ci,ymax=upper.ci),width=0) +
+  labs(x = "Year", y = "Logistic regression coefficients") +
+  scale_x_continuous(breaks=c(1982, 1998, 2014), limits=c(1980,2016)) +
+  scale_y_continuous(breaks=c(-3, -2, -1, 0, 1, 2, 3),minor_breaks=c(0.0001)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor.x = element_blank(), 
+        panel.grid.minor.y = element_line(colour="grey", size=0.25), 
+        legend.position="none", 
+        strip.text.x = element_text(size=10, vjust=.5), 
+        strip.background = element_blank(), 
+        axis.title.x = element_text(size=11, face="bold", vjust=-.75), 
+        axis.title.y = element_text(size=11, face="bold", vjust=1.5), 
+        axis.text.x = element_text(size=9, vjust=1), 
+        axis.text.y = element_text(size=9, hjust=1)) +
+  facet_wrap( ~ variable, nrow=2)
+
+ggplot(coef.year.list[[5]], aes(year, value)) + 
+  geom_point(alpha=1, colour="black", size=1) +   
+  geom_errorbar(aes(ymin=lower.ci,ymax=upper.ci),width=0) +
+  labs(x = "Year", y = "Logistic regression coefficients") +
+  scale_x_continuous(breaks=c(1982, 1998, 2014), limits=c(1980,2016)) +
+  scale_y_continuous(breaks=c(-3, -2, -1, 0, 1, 2, 3),minor_breaks=c(0.0001)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor.x = element_blank(), 
+        panel.grid.minor.y = element_line(colour="grey", size=0.25), 
+        legend.position="none", 
+        strip.text.x = element_text(size=10, vjust=.5), 
+        strip.background = element_blank(), 
+        axis.title.x = element_text(size=11, face="bold", vjust=-.75), 
+        axis.title.y = element_text(size=11, face="bold", vjust=1.5), 
+        axis.text.x = element_text(size=9, vjust=1), 
+        axis.text.y = element_text(size=9, hjust=1)) +
+  facet_wrap( ~ variable, nrow=2)
+
+```
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+coef.year <- data.frame(matrix(NA_real_, nrow = 1, ncol = 44))
+se.year <- data.frame(matrix(NA_real_, nrow = 1, ncol = 44))
+colnames(coef.year) <- c("(Intercept)","Z.AGE", "SEXFEMALE", "RACEBLACK", "RACEOTHER", "educationHighSchool", "educationCollege", "educationGraduate", "RES16FARM", "RES16TOWN LT 50000", "RES1650000 TO 250000", "RES16BIG-CITY SUBURB", "RES16CITY GT 250000", "REG16MIDDLE ATLANTIC", "REG16E. NOR. CENTRAL",  "REG16W. NOR. CENTRAL",  "REG16SOUTH ATLANTIC", "REG16E. SOU. CENTRAL", "REG16W. SOU. CENTRAL",  "REG16MOUNTAIN", "REG16PACIFIC", "REGIONMIDDLE ATLANTIC", "REGIONE. NOR. CENTRAL", "REGIONW. NOR. CENTRAL","REGIONSOUTH ATLANTIC", "REGIONE. SOU. CENTRAL", "REGIONW. SOU. CENTRAL", "REGIONMOUNTAIN", "REGIONPACIFIC", "INCOME$1000 TO 2999", "INCOME$3000 TO 3999", "INCOME$4000 TO 4999", "INCOME$5000 TO 5999",  "INCOME$6000 TO 6999",  "INCOME$7000 TO 7999",  "INCOME$8000 TO 9999", "INCOME$10000 - 14999",  "INCOME$15000 - 19999",  "INCOME$20000 - 24999" , "INCOME$25000 OR MORE" , "PARTYIndependent",  "PARTYRepublican", "ROWNGUNNO" ,"ROWNGUNREFUSED")
+colnames(se.year) <- c("(Intercept)","Z.AGE", "SEXFEMALE", "RACEBLACK", "RACEOTHER", "educationHighSchool", "educationCollege", "educationGraduate", "RES16FARM", "RES16TOWN LT 50000", "RES1650000 TO 250000", "RES16BIG-CITY SUBURB", "RES16CITY GT 250000", "REG16MIDDLE ATLANTIC", "REG16E. NOR. CENTRAL",  "REG16W. NOR. CENTRAL",  "REG16SOUTH ATLANTIC", "REG16E. SOU. CENTRAL", "REG16W. SOU. CENTRAL",  "REG16MOUNTAIN", "REG16PACIFIC", "REGIONMIDDLE ATLANTIC", "REGIONE. NOR. CENTRAL", "REGIONW. NOR. CENTRAL","REGIONSOUTH ATLANTIC", "REGIONE. SOU. CENTRAL", "REGIONW. SOU. CENTRAL", "REGIONMOUNTAIN", "REGIONPACIFIC", "INCOME$1000 TO 2999", "INCOME$3000 TO 3999", "INCOME$4000 TO 4999", "INCOME$5000 TO 5999",  "INCOME$6000 TO 6999",  "INCOME$7000 TO 7999",  "INCOME$8000 TO 9999", "INCOME$10000 - 14999",  "INCOME$15000 - 19999",  "INCOME$20000 - 24999" , "INCOME$25000 OR MORE" , "PARTYIndependent",  "PARTYRepublican", "ROWNGUNNO" ,"ROWNGUNREFUSED")
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+for(i in 1:28){
+  model.data <- data.frame(subset(small.dataset, year.order == i))
+  if (length(unique(model.data$SEX)) >1 && length(unique(model.data$RACE)) > 1 && length(unique(model.data$education)) > 1 && 
+      length(unique(model.data$RES16)) > 1 && length(unique(model.data$REG16)) > 1 &&
+      length(unique(model.data$REGION)) > 1 && length(unique(model.data$INCOME)) > 1 && length(unique(model.data$PARTY)) > 1 &&
+      length(unique(model.data$ROWNGUN)) > 1 ) {
+    
+        coef.year.new <- data.frame(summary(glm(GUNSUPPORT ~ Z.AGE + SEX + RACE + education + RES16 + REG16 + REGION + INCOME + PARTY + ROWNGUN, family=binomial(link="logit"), data=model.data))$coefficients[,1])
+        coef.year.new <- t(coef.year.new)
+    
+        se.year.new <- data.frame(summary(glm(GUNSUPPORT ~ Z.AGE + SEX + RACE + education + RES16 + REG16 + REGION + INCOME + PARTY + ROWNGUN, family=binomial(link="logit"), data=model.data))$coefficients[,2])
+        se.year.new <- t(se.year.new)
+    
+        coef.year <- smartbind(coef.year, coef.year.new, fill=NA)
+        se.year <- smartbind(se.year, se.year.new, fill=NA)
+       
+  } else {
+    #print(i) #1,2,3,4,5,6, 8, 10, 19-28
+  }
+  
+}
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+coef.year <- coef.year[-1,]
+se.year <- se.year[-1,]
+coef.year$year <- as.numeric(c(1980, 1982, 1984, 1985, 1987, 1988, 1989, 1990, 1991, 1993, 1994, 1996, 1998, 2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016))
+
+# split in groups for plotting
+coef.year.group1 <- coef.year[,1:9]
+coef.year.group2 <- coef.year[,10:18]
+coef.year.group3 <- coef.year[,19:27]
+coef.year.group4 <- coef.year[,28:36]
+coef.year.group5 <- coef.year[,37:44]
+se.year.group1 <- se.year[,1:9]
+se.year.group2 <- se.year[,10:18]
+se.year.group3 <- se.year[,19:27]
+se.year.group4 <- se.year[,28:36]
+se.year.group5 <- se.year[,37:44]
+
+coef.year.list <- list(coef.year.group1, coef.year.group2, coef.year.group3, coef.year.group4, coef.year.group5)
+se.year.list <- list(se.year.group1, se.year.group2, se.year.group3, se.year.group4, se.year.group5)
+
+lev1 <- c("Intercept", "Age", "Sex: Female", "Race: Black", "Race: Other", "Edu: HighSchool", "Edu: College", "Edu: Graduate", "Res16: Farm") 
+lev2 <- c("Res16: Small Town", "Res16: Big Town","Res16: City Suburb",  "Res16: Big City", "Reg16: Middle Atlantic", "Reg16: E.NOR. Central",  "Reg16: W.NOR. Central", "Reg16: South Atlantic", "Reg16: E.SOU. Central")
+lev3 <- c("Reg16: W.SOU. Central", "Reg16: Mountain",  "Reg16: Pacific", "Reg: Middle Atlantic", "Reg: E.NOR. Central",  "Reg: W.NOR. Central", "Reg: South Atlantic", "Reg: E.SOU. Central","Reg: W.SOU. Central")
+lev4 <- c( "Reg: Mountain", "Reg: Pacific", "Income: $1000 TO 2999", "Income: $3000 TO 3999", "Income: $4000 TO 4999", "Income: $5000 TO 5999", "Income: $6000 TO 6999", "Income: $7000 TO 7999", "Income: $8000 TO 9999")
+lev5 <- c( "Income: $10000 - 14999",  "Income: $15000 - 19999",  "Income: $20000 - 24999",  "Income: $25000 OR MORE",  "Party: Independent", "Party: Republican","OwnGun: No", "OwnGun: Refused")
+
+lev.list <- list(lev1, lev2, lev3, lev4, lev5)
+
+for (i in 1:5) {
+  coef.year.list[[i]]$year <- coef.year$year
+  coef.year.list[[i]] <- melt(coef.year.list[[i]], id.vars="year")
+  coef.year.list[[i]]$se <- melt(se.year.list[[i]])[,2]
+  coef.year.list[[i]]$upper.ci <- coef.year.list[[i]]$value + coef.year.list[[i]]$se 
+  coef.year.list[[i]]$lower.ci <- coef.year.list[[i]]$value - coef.year.list[[i]]$se
+  levels(coef.year.list[[i]]$variable) <- lev.list[[i]]
+
+  coef.year.list[[i]] <- coef.year.list[[i]][!(is.na(coef.year.list[[i]]$value)),]
+  coef.year.list[[i]] <- coef.year.list[[i]][abs(coef.year.list[[i]]$value) > coef.year.list[[i]]$se * 1 , ]
+}
+
+```
+
+Next figures also show the same results but from 1980 to 2016 and not including GUN variable. We can see sex, race, residence(country or city, etc.), party affiliation and gun ownership are very good predictors for public opinion about gun control. 
+
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+ggplot(coef.year.list[[1]], aes(year, value)) + 
+  geom_point(alpha=1, colour="black", size=1) +   
+  geom_errorbar(aes(ymin=lower.ci,ymax=upper.ci),width=0) +
+  labs(x = "Year", y = "Logistic regression coefficients") +
+  scale_x_continuous(breaks=c(1982, 1998, 2014), limits=c(1980,2016)) +
+  scale_y_continuous(breaks=c(-3, -2, -1, 0, 1, 2, 3),minor_breaks=c(0.0001)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor.x = element_blank(), 
+        panel.grid.minor.y = element_line(colour="grey", size=0.25), 
+        legend.position="none", 
+        strip.text.x = element_text(size=10, vjust=.5), 
+        strip.background = element_blank(), 
+        axis.title.x = element_text(size=11, face="bold", vjust=-.75), 
+        axis.title.y = element_text(size=11, face="bold", vjust=1.5), 
+        axis.text.x = element_text(size=9, vjust=1), 
+        axis.text.y = element_text(size=9, hjust=1)) +
+  facet_wrap( ~ variable, nrow=2)
+
+ggplot(coef.year.list[[2]], aes(year, value)) + 
+  geom_point(alpha=1, colour="black", size=1) +   
+  geom_errorbar(aes(ymin=lower.ci,ymax=upper.ci),width=0) +
+  labs(x = "Year", y = "Logistic regression coefficients") +
+  scale_x_continuous(breaks=c(1982, 1998, 2014), limits=c(1980,2016)) +
+  scale_y_continuous(breaks=c(-3, -2, -1, 0, 1, 2, 3),minor_breaks=c(0.0001)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor.x = element_blank(), 
+        panel.grid.minor.y = element_line(colour="grey", size=0.25), 
+        legend.position="none", 
+        strip.text.x = element_text(size=9, vjust=.5), 
+        strip.background = element_blank(), 
+        axis.title.x = element_text(size=11, face="bold", vjust=-.75), 
+        axis.title.y = element_text(size=11, face="bold", vjust=1.5), 
+        axis.text.x = element_text(size=9, vjust=1), 
+        axis.text.y = element_text(size=9, hjust=1)) +
+  facet_wrap( ~ variable, nrow=2)
+
+ggplot(coef.year.list[[3]], aes(year, value)) + 
+  geom_point(alpha=1, colour="black", size=1) +   
+  geom_errorbar(aes(ymin=lower.ci,ymax=upper.ci),width=0) +
+  labs(x = "Year", y = "Logistic regression coefficients") +
+  scale_x_continuous(breaks=c(1982, 1998, 2014), limits=c(1980,2016)) +
+  scale_y_continuous(breaks=c(-3, -2, -1, 0, 1, 2, 3),minor_breaks=c(0.0001)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor.x = element_blank(), 
+        panel.grid.minor.y = element_line(colour="grey", size=0.25), 
+        legend.position="none", 
+        strip.text.x = element_text(size=9, vjust=.5), 
+        strip.background = element_blank(), 
+        axis.title.x = element_text(size=11, face="bold", vjust=-.75), 
+        axis.title.y = element_text(size=11, face="bold", vjust=1.5), 
+        axis.text.x = element_text(size=9, vjust=1), 
+        axis.text.y = element_text(size=9, hjust=1)) +
+  facet_wrap( ~ variable, nrow=2)
+
+ggplot(coef.year.list[[4]], aes(year, value)) + 
+  geom_point(alpha=1, colour="black", size=1) +   
+  geom_errorbar(aes(ymin=lower.ci,ymax=upper.ci),width=0) +
+  labs(x = "Year", y = "Logistic regression coefficients") +
+  scale_x_continuous(breaks=c(1982, 1998, 2014), limits=c(1980,2016)) +
+  scale_y_continuous(breaks=c(-3, -2, -1, 0, 1, 2, 3),minor_breaks=c(0.0001)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor.x = element_blank(), 
+        panel.grid.minor.y = element_line(colour="grey", size=0.25), 
+        legend.position="none", 
+        strip.text.x = element_text(size=8, vjust=.5), 
+        strip.background = element_blank(), 
+        axis.title.x = element_text(size=11, face="bold", vjust=-.75), 
+        axis.title.y = element_text(size=11, face="bold", vjust=1.5), 
+        axis.text.x = element_text(size=9, vjust=1), 
+        axis.text.y = element_text(size=9, hjust=1)) +
+  facet_wrap( ~ variable, nrow=2)
+
+ggplot(coef.year.list[[5]], aes(year, value)) + 
+  geom_point(alpha=1, colour="black", size=1) +   
+  geom_errorbar(aes(ymin=lower.ci,ymax=upper.ci),width=0) +
+  labs(x = "Year", y = "Logistic regression coefficients") +
+  scale_x_continuous(breaks=c(1982, 1998, 2014), limits=c(1980,2016)) +
+  scale_y_continuous(breaks=c(-3, -2, -1, 0, 1, 2, 3),minor_breaks=c(0.0001)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor.x = element_blank(), 
+        panel.grid.minor.y = element_line(colour="grey", size=0.25), 
+        legend.position="none", 
+        strip.text.x = element_text(size=10, vjust=.5), 
+        strip.background = element_blank(), 
+        axis.title.x = element_text(size=11, face="bold", vjust=-.75), 
+        axis.title.y = element_text(size=11, face="bold", vjust=1.5), 
+        axis.text.x = element_text(size=9, vjust=1), 
+        axis.text.y = element_text(size=9, hjust=1)) +
+  facet_wrap( ~ variable, nrow=2)
+
+```
+
+
+
+```{r 2004, 2006 data, message=FALSE, warning=FALSE, echo=FALSE}
+
+partial.dataset = big.dataset %>% 
+  dplyr::select(YEAR, ID, AGE, SEX, RACE, EDUC, DEGREE, RES16, REG16, REGION, INCOME, PARTYID, GUNLAW, OWNGUN, ROWNGUN, HGUNLAW, HGUNCRIM, GUNSALES, GUNSDRUG, SEMIGUNS, GUNS911, RIFLES50, OTHGUNS, GUNSDRNK )
+
+partial.dataset$GUNSUPPORT <- as.numeric(as.character(recode(partial.dataset$GUNLAW,
+                                                         "'FAVOR' = 1;
+                                                         'OPPOSE' = 0;
+                                                         ")))
+
+partial.dataset$HGUNLAWRES <- as.numeric(as.character(recode(partial.dataset$HGUNLAW,
+                                                         "'AGREE' = 1;
+                                                         'DISAGREE' = 0;
+                                                         ")))
+partial.dataset$HGUNCRIM <- recode(partial.dataset$HGUNCRIM, "'MORE RESTRICTION WOULD DECREASE CRIME' = 'Decrease';
+                          'MORE RESTRICTION WOULD INCREASE CRIME' = 'Increase';
+                          'UNSURE' = NA")
+
+partial.dataset$GUNSALESRES <- as.numeric(as.character(recode(partial.dataset$GUNSALES,
+                                                         "c('Strongly favor', 'Favor') = 1;
+                                                         c('Strongly oppose', 'Oppose') = 0;
+                                                         'Neither favor nor oppose' = NA")))
+
+partial.dataset$SEMIGUNS <- as.numeric(as.character(recode(partial.dataset$SEMIGUNS,
+                                                         "'Sold to the general public' = 'Public';
+                                                         'Sales be limited to the military and police' = 'Military'")))
+
+partial.dataset$RIFLES50 <- as.numeric(as.character(recode(partial.dataset$RIFLES50,
+                                                         "'Restricted to the police and military' = 'Military';
+                                                         'Available to civilians like other hunting rifles' = 'Public'")))
+
+levels(partial.dataset$RIFLES50) <- c("Public", "Military")
+
+
+
+partial.dataset$PARTY <- recode(partial.dataset$PARTYID, "c('STRONG DEMOCRAT', 'NOT STR DEMOCRAT') = 'Democrat';
+                          c('IND,NEAR DEM', 'INDEPENDENT', 'IND,NEAR REP') = 'Independent';
+                          c('NOT STR REPUBLICAN', 'STRONG REPUBLICAN') = 'Republican';
+                            'OTHER PARTY' = NA")
+
+
+partial.dataset$REG16 <- recode(partial.dataset$REG16, "'FOREIGN' = NA")
+levels(partial.dataset$REG16) <- c("NEW ENGLAND","MIDDLE ATLANTIC", "E. NOR. CENTRAL", "W. NOR. CENTRAL", "SOUTH ATLANTIC",  "E. SOU. CENTRAL", "W. SOU. CENTRAL", "MOUNTAIN" ,"PACIFIC")
+partial.dataset$AGENUM <- as.numeric(as.character(recode(partial.dataset$AGE, "'89 OR OLDER' = '89'")))
+## Age standardised
+partial.dataset$Z.AGE <- scale(partial.dataset$AGENUM,
+       scale = (sd(partial.dataset$AGENUM, na.rm=TRUE)*2)
+       )
+partial.dataset$education <- recode(partial.dataset$EDUC, "'0' = 'NoEduc';
+                          c('1', '2', '3', '4', '5') = 'Elementary';
+                          c('6', '7', '8') = 'MiddleSchool';
+                          c('9', '10', '11', '12') = 'HighSchool';
+                          c('13', '14', '15', '16') = 'College';
+                          c('17', '18', '19', '20') = 'Graduate';")
+levels(partial.dataset$education) <- c("NoEduc", 
+                                      "Elementary",
+                                     "MiddleSchool",
+                                     "HighSchool",
+                                     "College",
+                                     "Graduate")
+```
+
+
+I also incldued a variable wich indicates if people believe more restriction will increase or decrease the crime. The results show that people who believe more restriction on handguns will decrease the crime are highly likely support the handgun law restrictions. However, when I tested it on the general support variable, the effect of people's belief that the restrction on handguns will decrease the crime was not significant.      
+
+
+```{r,  message=FALSE, warning=FALSE, echo=FALSE}
+# 2004 hgunlaw ~ hguncrim
+partial.dataset.2004 <- subset(partial.dataset, YEAR == '2004')
+gunsupport.model2 <- glm(HGUNLAWRES ~ Z.AGE + SEX + RACE + education +RES16 + REG16 + REGION + INCOME + PARTY + OWNGUN + ROWNGUN + HGUNCRIM ,family=binomial(link="logit"), data = partial.dataset.2004)
+
+display(gunsupport.model2)
+
+
+
+```
+
+```{r,  message=FALSE, warning=FALSE, echo=FALSE}
+gunsupport.model3 <- glm(GUNSUPPORT ~ Z.AGE + SEX + RACE + education + RES16 + REG16 + REGION + INCOME + PARTY + OWNGUN + ROWNGUN + HGUNLAW + HGUNCRIM ,family=binomial(link="logit"), data = partial.dataset.2004)
+
+display(gunsupport.model3)
+
+```
+
+
+### Mass Shootings
+
+The graph below is the trend of the number of victims of mass shootings and the ratio of favor in gun control public opinion data. This graph does not show any particular relationship between the two variables. I examine this in more details with regression models. 
+
+```{r shootings data manipulation, message=FALSE, warning=FALSE, echo=FALSE}
+
+massshootings.byyear <- group_by(shooting, year) %>% 
+  summarize(total_victims = sum(total_victims), num_case = length(case))
+
+colnames(gunconrtolsupport.proportions) <- c("year", "Favor", "Oppose")
+
+favor.oppose.massshooting.byyear <- merge(x = gunconrtolsupport.proportions, y = massshootings.byyear, by = "year", all = TRUE)
+#colnames(favor.oppose.massshooting.byyear) <- c("Year", "Favor", "Oppose", "Total_victims", "Num_of_cases")
+favor.oppose.massshooting.byyear$Favor <- as.numeric(favor.oppose.massshooting.byyear$Favor)
+favor.oppose.massshooting.byyear$Oppose <- as.numeric(favor.oppose.massshooting.byyear$Oppose)
+favor.oppose.massshooting.byyear$year <- as.numeric(favor.oppose.massshooting.byyear$year)
+favor.oppose.massshooting.byyear$Favor.scaled <- (favor.oppose.massshooting.byyear$Favor -0.5) * 400
+```
+
+```{r plot , message=FALSE, warning=FALSE, echo=FALSE}
+
+p <- ggplot(na.omit(favor.oppose.massshooting.byyear))
+  p <- p + geom_line(aes(x = year, y = total_victims, colour = "Total victims"))
+  
+  # adding the relative humidity data, transformed to match roughly the range of the temperature
+  p <- p + geom_line(aes(x = year, y=Favor.scaled, colour = "Favor"))
+  
+  # now adding the secondary axis, following the example in the help file ?scale_y_continuous
+  # and, very important, reverting the above transformation
+  p <- p + scale_y_continuous(sec.axis = sec_axis(~./400 + 0.5, name = "Favor ratio"))
+  
+  # modifying colours and theme options
+  p <- p + scale_colour_manual(values = c("blue", "red"))
+  p <- p + labs(y = "Number of total victims",
+                x = "Year",
+                colour = "Parameter")
+  p <- p + theme(legend.position = c(0.1, 0.8))
+p
+
+
+```
+
+
+The dependent variable for Model 4 is the percentage of favor in the gun control public opinion data, and the independent variables are the total number of victims from mass shooings and the number of incidents each year. In Model 5, I used previous year's mass shooting data as independent variables. Both model show negative relationships between the number of victims and the gun control support. It is counter-intuitive, but with the high p-value (high uncertainty) and low R-suqred (low explanation power), I cannot say this negative relationship actually means something.
+
+
+
+```{r model 4, message=FALSE, warning=FALSE, echo=FALSE}
+
+favor.oppose.massshooting.byyear$z.favor <- scale(favor.oppose.massshooting.byyear$Favor,
+       scale = (sd(favor.oppose.massshooting.byyear$Favor, na.rm=TRUE)*2)
+       )
+favor.oppose.massshooting.byyear$z.victims <- scale(favor.oppose.massshooting.byyear$total_victims,
+       scale = (sd(favor.oppose.massshooting.byyear$total_victims, na.rm=TRUE)*2)
+       )
+favor.oppose.massshooting.byyear$z.numcase <- scale(favor.oppose.massshooting.byyear$num_case,
+       scale = (sd(favor.oppose.massshooting.byyear$num_case, na.rm=TRUE)*2)
+       )
+gunsupport.model4 <- lm(z.favor ~ z.victims + z.numcase, data = favor.oppose.massshooting.byyear)
+
+
+```
+
+```{r model 5, message=FALSE, warning=FALSE, echo=FALSE}
+favor.oppose.massshooting.byyear['z.favor.pushed'] <- c(NA, head(favor.oppose.massshooting.byyear['z.favor'], dim(favor.oppose.massshooting.byyear)[1] - 1)[[1]])
+gunsupport.model5 <- lm(z.favor.pushed ~ z.victims + z.numcase, data = favor.oppose.massshooting.byyear)
+
+#stargazer(gunsupport.model4, gunsupport.model5, title="Results", align=TRUE)
+export_summs(gunsupport.model4, gunsupport.model5,
+model.names = c("Model 4","Model 5"),
+scale = TRUE, robust = TRUE)
+
+effect_plot(gunsupport.model4, pred = z.victims, interval = TRUE, plot.points = TRUE,
+            robust = "HC3")
+#export_summs(gunsupport.model5)
+effect_plot(gunsupport.model5, pred = z.victims, interval = TRUE, plot.points = TRUE,
+            robust = "HC3")
+
+```
+
+
+The number of mass shootings incidents and the number of victims followed by them increased drastically in recent years. In order to reflect the recent trend, I ran the previous linear regression models on the recent Gallop survey data (1990-2018). Model 6 includes the whole dataset from 1990 to 2016. I truncated old dataset to reflect the recent trend better in Model 7. Then I used previous year's mass shooing data in Model 8. The number of victims have positive relationship with the gun control suppport in all three models, but these models also show high p-valudes and very low R-squared. 
+
+
+This analysis might indicate that attitude toward gun control which is based on self-interest and symbolic values are not likely to shift by individual mass shooting events. Even though he studied general crimes rather mass shootings, Smith (1980)'s research also shows that gun control attitudes stem in large part from a cultural heritage that is not likely to be drastically altered by contemporary events.
+
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+gallop <- read.csv("/Users/minoh/Documents/Usyd2018-1/DataAnalysis/Research/GallopPoll.csv")
+colnames(gallop) <- c("X", "More", "Less", "Keep", "No", "year")
+gallop.massshooting.byyear <- merge(x = gallop, y = massshootings.byyear, by = "year", all = TRUE)
+#colnames(favor.oppose.massshooting.byyear) <- c("Year", "Favor", "Oppose", "Total_victims", "Num_of_cases")
+
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+gallop.massshooting.byyear$z.more <- scale(gallop.massshooting.byyear$More,
+       scale = (sd(gallop.massshooting.byyear$More, na.rm=TRUE)*2)
+       )
+gallop.massshooting.byyear$z.victims <- scale(gallop.massshooting.byyear$total_victims,
+       scale = (sd(gallop.massshooting.byyear$total_victims, na.rm=TRUE)*2)
+       )
+gallop.massshooting.byyear$z.numcase <- scale(gallop.massshooting.byyear$num_case,
+       scale = (sd(gallop.massshooting.byyear$num_case, na.rm=TRUE)*2)
+       )
+
+gunsupport.model6 <- lm(z.more ~ z.victims + z.numcase, data = gallop.massshooting.byyear)
+
+
+
+```
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+recent.gallop <- subset(gallop.massshooting.byyear, year > 1998)
+gunsupport.model7 <- lm(z.more ~ z.victims + z.numcase, data = recent.gallop)
+
+
+
+recent.gallop['more.pushed'] <- c(NA, head(recent.gallop['z.more'], dim(recent.gallop)[1] - 1)[[1]])
+gunsupport.model8 <- lm(more.pushed ~ z.victims + z.numcase, data = recent.gallop)
+
+export_summs(gunsupport.model6, gunsupport.model7, gunsupport.model8,
+model.names = c("Model 6","Model 7","Model 8"),
+scale = TRUE, robust = TRUE)
+
+#stargazer(gunsupport.model6, gunsupport.model7, gunsupport.model8, title="Results", align=TRUE)
+
+effect_plot(gunsupport.model6, pred = z.victims, interval = TRUE, plot.points = TRUE,
+            robust = "HC3")
+effect_plot(gunsupport.model7, pred = z.victims, interval = TRUE, plot.points = TRUE,
+            robust = "HC3")
+effect_plot(gunsupport.model8, pred = z.victims, interval = TRUE, plot.points = TRUE,
+            robust = "HC3")
+```
+\vspace{6mm}
+
+#5. Conclusion
+
+I examined two theoretical explanations about the public opinion on gun control issues which are instrumentalist view and egalitarian view. The empirical study with GSS data shows that both self-interest (gun ownership) and symbolic values (party affiliation) have strong relationship with the public opinion on gun control. Also, it is interesting to see that having lived in the big city suburb when respondents were 16 years old is another strong predictor for the gun control support. That might also support egalitarian view because there are usually more Democrats in the city suburban area than rural areas in the United Sates. The dataset does not include the exact area where the respondents are living, so I could not perform any spatial data analysis on it. That can be very intereseting future study. 
+Analysis with mass shooting data shows that there is no relationship between mass shootings and public opinion on gun control. However, there is some limitations to make this conclusion. First, it is hard to produce meaningful results with such a small dataset. Second, we can draw different results with differnt survey dataset because the percentage of gun control support is different in many other surveys. It may be because of differnces in sampling or in the way of asking survey questions. However, since it is impossible to increase the number of data (number of mass shootings) manually, I think it is meaningful to try drawing implications even with small dataset. 
+
+
+\vspace{6mm}
+****************************
+
+#References
+Celinska K. (2007). Individualism and collectivism in America: The case of gun ownership and attitudes toward gun control. Sociological Perspectives, 50, 229-247.
+
+DeGrazia, D., & Hunt, L.(2016-11-24). What Is the Issue of Gun Control About?. In Debating Gun Control. : Oxford University Press. Retrieved 17 Apr. 2018, from http://www.oxfordscholarship.com.ezproxy1.library.usyd.edu.au/view/10.1093/acprof:oso/9780190251253.001.0001/acprof-9780190251253-chapter-1.
+
+Division Over Gun Control. (2011, January 10). Retrieved from http://www.pewresearch.org/fact-tank/2011/01/10/division-over-gun-control/
+
+Gray, S. (2018, February 28). Gun Control Support Has Surged to Its Highest Level in 25 Years. TIME. Retrieved from http://time.com/5180006/gun-control-support-has-surged-to-its-highest-level-in-25-years/.
+Kleck, Gary (1996). Crime, culture conflict and the sources of support for gun control. American Behavioral Scientist 39(4) 387-40
+
+Lindaman, K and Haider-Markel, D. P. (2002). Issue Evolution, Political Parties, and the Culture Wars, Political Research Quarterly
+Vol. 55, No. 1 (Mar., 2002), pp. 91-110
+
+Semet A., Ansolabehere S. (2011, November). Profiling and predicting opinion on gun control: A comparative perspective on the factors underlying opinion on different gun control measures. Paper presented at the Conference of Empirical Legal Studies, Chicago, IL. Retrieved from http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1884661
+
+Shepard, S. (2018, February 28). Gun control support surges in polls. Politico. Retrieved from https://www.politico.com/story/2018/02/28/gun-control-polling-parkland-430099
+
+Smith, T. W. (1980). The 75 percent solution: An analysis of the structure of attitudes on gun control, 1959-1977. Journal of Criminal Law and Criminology 71: 300-316.
+https://scholarlycommons.law.northwestern.edu/cgi/viewcontent.cgi?article=6186&context=jclc
+
+Sears, David O., Richard R. Lau, Tom R. Tyler, and Harris M. Allen, Jr. (1980). Self- interest vs. symbolic politics in policy attitudes and presidential voting. American Political Science Review 74: 670-684.
+
+Wolpert, R. M and Gimpel, J. G. (1998). Self-Interest, Symbolic Politics, and Public Attitudes toward Gun Control. Political Behavior. Vol. 20, No. 3, pp. 241-262
+
+Wozniak, Kevin H. (2015). Public Opinion About Gun Control Post–Sandy Hook, Criminal Justice Policy Review , Vol 28, Issue 3, pp. 255 - 278.
+
+******************
+#Appendix - GSS Survey Questions
+gunlaw
+Would you favor or oppose a law which would require a person to obtain a police permit before he or she could buy a gun?
+
+rowngun
+Do you happen to have in your home (IF HOUSE: or garage) any guns or revolvers? 
+B. Do any of these guns personally belong to you?
+
+hgunlaw
+Please tell me whether you agree or disagree with the following statement: “There should be more legal restrictions on handguns in our society.”
+
+hguncrim
+Some people argue that more restrictions on handguns would decrease violent crime by making it harder for criminals to get handguns. Other people argue that more restrictions on handguns would increase violent crime by making it harder for law-abiding citizens to defend themselves with handguns. Which of the following statements is closer to your own opinion?
+
+res16
+Which of the categories on this card comes closest to the type of place you were living in when you were 16 years old?
+
+
+
+
