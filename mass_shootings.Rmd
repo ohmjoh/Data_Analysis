@@ -1,0 +1,7 @@
+---
+title: "Mass_shooting_research"
+author: "Min Jeong Oh"
+date: "3/31/2021"
+output: html_document
+---
+
