@@ -138,7 +138,8 @@ favor.oppose.massshooting.byyear <- merge(x = gunconrtolsupport.proportions, y =
 favor.oppose.massshooting.byyear$Favor <- as.numeric(favor.oppose.massshooting.byyear$Favor)
 favor.oppose.massshooting.byyear$Oppose <- as.numeric(favor.oppose.massshooting.byyear$Oppose)
 favor.oppose.massshooting.byyear$year <- as.numeric(favor.oppose.massshooting.byyear$year)
-favor.oppose.massshooting.byyear$Favor.scaled <- (favor.oppose.massshooting.byyear$Favor -0.5) * 400
+favor.oppose.massshooting.byyear$Favor.scaled.for.victims <- (favor.oppose.massshooting.byyear$Favor -0.5) * 400
+favor.oppose.massshooting.byyear$Favor.scaled.for.cases <- (favor.oppose.massshooting.byyear$Favor -0.2) * 20
 ```
 
 ```{r plot , message=FALSE, warning=FALSE, echo=FALSE}
@@ -147,7 +148,7 @@ p <- ggplot(na.omit(favor.oppose.massshooting.byyear))
   p <- p + geom_line(aes(x = year, y = total_victims, colour = "Total victims"))
   
   # adding the relative humidity data, transformed to match roughly the range of the temperature
-  p <- p + geom_line(aes(x = year, y=Favor.scaled, colour = "Favor ratio"))
+  p <- p + geom_line(aes(x = year, y=Favor.scaled.for.victims, colour = "Favor ratio"))
   
   # now adding the secondary axis, following the example in the help file ?scale_y_continuous
   # and, very important, reverting the above transformation
@@ -163,20 +164,32 @@ p
 
 
 ```
+
 ```{r plot , message=FALSE, warning=FALSE, echo=FALSE}
 
 p <- ggplot(na.omit(favor.oppose.massshooting.byyear))
   p <- p + geom_line(aes(x = year, y = num_case, colour = "Number of cases"))
   
-p
-```
-```{r plot , message=FALSE, warning=FALSE, echo=FALSE}
-
-p <- ggplot(na.omit(favor.oppose.massshooting.byyear))
-  p <- p + geom_line(aes(x = year, y = Favor, colour = "Favor ratio"))
+  # adding the relative humidity data, transformed to match roughly the range of the temperature
+  p <- p + geom_line(aes(x = year, y=Favor.scaled.for.cases, colour = "Favor ratio"))
   
+  # now adding the secondary axis, following the example in the help file ?scale_y_continuous
+  # and, very important, reverting the above transformation
+  p <- p + scale_y_continuous(sec.axis = sec_axis(~./20 + 0.2, name = "Favor ratio"))
+  
+  
+  # modifying colours and theme options
+  p <- p + scale_colour_manual(values = c("blue", "red"))
+  p <- p + labs(y = "Number of mass shootings",
+                x = "Year",
+                colour = "Parameter")
+  p <- p + theme(legend.position = c(0.2, 0.5))
 p
+
+
 ```
+
+
 
 ```{r favor data by party , message=FALSE, warning=FALSE, echo=FALSE}
 #Subset data by each party
@@ -274,11 +287,9 @@ p
 ```
 
 
-The dependent variable for Model 4 is the percentage of favor in the gun control public opinion data, and the independent variables are the total number of victims from mass shooings and the number of incidents each year. In Model 5, I used previous year's mass shooting data as independent variables. Both model show negative relationships between the number of victims and the gun control support. It is counter-intuitive, but with the high p-value (high uncertainty) and low R-suqred (low explanation power), I cannot say this negative relationship actually means something.
 
 
-
-```{r model 4, message=FALSE, warning=FALSE, echo=FALSE}
+```{r model 1, message=FALSE, warning=FALSE, echo=FALSE}
 
 favor.oppose.massshooting.byyear$z.favor <- scale(favor.oppose.massshooting.byyear$Favor,
        scale = (sd(favor.oppose.massshooting.byyear$Favor, na.rm=TRUE)*2)
@@ -289,27 +300,26 @@ favor.oppose.massshooting.byyear$z.victims <- scale(favor.oppose.massshooting.by
 favor.oppose.massshooting.byyear$z.numcase <- scale(favor.oppose.massshooting.byyear$num_case,
        scale = (sd(favor.oppose.massshooting.byyear$num_case, na.rm=TRUE)*2)
        )
-gunsupport.model4 <- lm(z.favor ~ z.victims + z.numcase, data = favor.oppose.massshooting.byyear)
-
-
+gunsupport.model1 <- lm(z.favor ~ z.victims + z.numcase, data = favor.oppose.massshooting.byyear)
 ```
 
-```{r model 5, message=FALSE, warning=FALSE, echo=FALSE}
-favor.oppose.massshooting.byyear['z.favor.pushed'] <- c(NA, head(favor.oppose.massshooting.byyear['z.favor'], dim(favor.oppose.massshooting.byyear)[1] - 1)[[1]])
-gunsupport.model5 <- lm(z.favor.pushed ~ z.victims + z.numcase, data = favor.oppose.massshooting.byyear)
+```{r model 2, message=FALSE, warning=FALSE, echo=FALSE}
 
-#stargazer(gunsupport.model4, gunsupport.model5, title="Results", align=TRUE)
-export_summs(gunsupport.model4, gunsupport.model5,
-model.names = c("Model 4","Model 5"),
+favor.oppose.massshooting.byyear['z.favor.pushed'] <- c(NA, head(favor.oppose.massshooting.byyear['z.favor'], dim(favor.oppose.massshooting.byyear)[1] - 1)[[1]])
+gunsupport.model2 <- lm(z.favor.pushed ~ z.victims + z.numcase, data = favor.oppose.massshooting.byyear)
+
+library(jtools)
+export_summs(gunsupport.model1, gunsupport.model2,
+model.names = c("Model 1","Model 2"),
 scale = TRUE, robust = TRUE)
 
-effect_plot(gunsupport.model4, pred = z.victims, interval = TRUE, plot.points = TRUE,
+effect_plot(gunsupport.model1, pred = z.victims, interval = TRUE, plot.points = TRUE,
             robust = "HC3")
 #export_summs(gunsupport.model5)
-effect_plot(gunsupport.model5, pred = z.victims, interval = TRUE, plot.points = TRUE,
+effect_plot(gunsupport.model2, pred = z.victims, interval = TRUE, plot.points = TRUE,
             robust = "HC3")
-
 ```
+
 
 ```{r model 9, message=FALSE, warning=FALSE, echo=FALSE}
 #model 9 with democrat data
