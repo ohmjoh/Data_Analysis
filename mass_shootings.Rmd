@@ -85,6 +85,18 @@ oppose.data$Republican <- oppose.data$prop.republican * oppose.data$Oppose
 
 ```
 
+On March 16, 2021, Robert Aaron Long purchased a 9mm handgun just hours before he killed eight people including six Asian women at three spas and massage parlors in Atlanta, Gerogia. On March 22, only six days after the atlanta shooting, 21-year-old Ahmad Al Aliwi Al-Issa shot and killed ten people at a supermarket in Boulder, Colordado. The killer purchase the assault-style rifle that was used in the shooting just six days before the attack. 
+
+There were two more mass shootings and 18 more victims as of now. (Source: [Mother Jones](https://www.motherjones.com/politics/2012/12/mass-shootings-mother-jones-full-data/))
+
+
+
+I showed how America is divided on gun control issues through my [previous research](http://minjeongoh.com/why-do-people-support-or-oppose-gun-control-law/) which examined the relationships among various social aspects and the public opinions toward gun control law. I also tested if public opinions on gun control law have changed after mass shooting happened. 
+
+In this post, I will take a close look 
+
+
+
 
 ```{r plot GSS data variables, message=FALSE, warning=FALSE, echo=FALSE}
 # By year
