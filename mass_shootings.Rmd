@@ -86,9 +86,9 @@ oppose.data$Republican <- oppose.data$prop.republican * oppose.data$Oppose
 
 ```
 
-## Will American puplic demand stricter gun control law after mass shooting events?
+## Will American public demand stricter gun control law after mass shooting incidents?
 
-On March 16, 2021, Robert Aaron Long purchased a 9mm handgun just hours before he killed eight people including six Asian women at three spas and massage parlors in Atlanta, Gerogia. On March 22, only six days after the atlanta shooting, 21-year-old Ahmad Al Aliwi Al-Issa shot and killed ten people at a supermarket in Boulder, Colordado. The killer purchase the assault-style rifle that was used in the shooting just six days before the attack. 
+On March 16, 2021, Robert Aaron Long purchased a 9mm handgun just hours before he killed eight people including six Asian women at three spas and massage parlors in Atlanta, Georgia. On March 22, only six days after the atlanta shooting, 21-year-old Ahmad Al Aliwi Al-Issa shot and killed ten people at a supermarket in Boulder, Colorado. The killer purchase the assault-style rifle that was used in the shooting just six days before the attack. 
 
 There were two more mass shootings and 18 more victims as of now. (Source: [Mother Jones](https://www.motherjones.com/politics/2012/12/mass-shootings-mother-jones-full-data/))
 
@@ -105,7 +105,7 @@ In this post, I will take a closer look to see how mass shootings impact America
 ## Data
 
 For the public opinions on the gun control law, I used the most recent [General Social Survey (GSS)](https://gss.norc.org/) data (1972-2018) from NORC University of Chicago. The respondents were asked a question, "Would you favor or oppose a law which would require a person to obtain a police permit before he or she could buy a gun?" 
-For the mass shooting data, I used [Mother Jones](https://www.motherjones.com/politics/2012/12/mass-shootings-mother-jones-full-data/) data becasue of its wide range (1982-2021) and its conservative definition of mass shootings resulting in identifying only high profile public mass shootings which were covered by most media, so the news about the mass shootings could reach most audience. These characteristics are suitable to assess the effect of mass shooting incidents toward public opinion shift.
+For the mass shooting data, I used [Mother Jones](https://www.motherjones.com/politics/2012/12/mass-shootings-mother-jones-full-data/) data because of its wide range (1982-2021) and its conservative definition of mass shootings resulting in identifying only high profile public mass shootings which were covered by most media, so the news about the mass shootings could reach most audience. These characteristics are suitable to assess the effect of mass shooting incidents toward public opinion shift.
 
 \vspace{6mm}
 
@@ -528,7 +528,7 @@ favor.oppose.massshooting.byyear.republican['z.favor.pushed'] <- c(favor.oppose.
 ```
 
 
-```{r testing removing outliers}
+```{r testing removing outliers, echo=FALSE}
 #democrat
 # favor.oppose.massshooting.byyear.democrat.before.2012 = favor.oppose.massshooting.byyear.democrat[which(favor.oppose.massshooting.byyear.democrat$year < 2012), ]
 # gunsupport.model9 <- lm(z.favor ~ z.victims + z.numcase, data = favor.oppose.massshooting.byyear.democrat.before.2012)
@@ -587,7 +587,7 @@ favor.oppose.massshooting.byyear.republican['z.favor.pushed'] <- c(favor.oppose.
 ```
 
 
-```{r residual plot}
+```{r residual plot, echo=FALSE}
 #gunsupport.model7 <- lm(z.favor ~ z.victims + z.numcase, data = favor.oppose.massshooting.byyear.republican)
 
 # model7.res = resid(gunsupport.model7)
@@ -607,7 +607,7 @@ Considering that surveys could have been conducted before mass shootings happene
 
 $$Favor_{year=n} = \alpha + \beta_1 NumberOfCases_{year=n-1} + \epsilon $$
 
-I ran these two models with the entire respondents and with different party affiliatio groups as well.
+I ran these two models with the entire respondents and with different party affiliation groups as well.
 
 
 ## Results
@@ -615,7 +615,7 @@ I ran these two models with the entire respondents and with different party affi
 The results show that the number of mass shooting cases has a negative relationship with the favor ratio for both the same year analysis and the lagged effect analysis. And both coefficients are statistically significant.
 
 
-```{r 1 explanatory variable numcase}
+```{r 1 explanatory variable numcase, echo=FALSE}
 gunsupport.model15 <- lm(z.favor ~ z.numcase, data = favor.oppose.massshooting.byyear)
 
 gunsupport.model16 <- lm(z.favor.pushed ~ z.numcase, data = favor.oppose.massshooting.byyear)
@@ -630,7 +630,7 @@ effect_plot(gunsupport.model16, pred = z.numcase, interval = TRUE, plot.points =
             robust = "HC3")
 ```
 
-```{r 1 explanatory variable victims}
+```{r 1 explanatory variable victims, echo=FALSE}
 # gunsupport.model23 <- lm(z.favor ~ z.victims, data = favor.oppose.massshooting.byyear)
 # 
 # gunsupport.model24 <- lm(z.favor.pushed ~ z.victims, data = favor.oppose.massshooting.byyear)
@@ -645,7 +645,7 @@ effect_plot(gunsupport.model16, pred = z.numcase, interval = TRUE, plot.points =
 #             robust = "HC3")
 ```
 
-I put respondents into three groups by their party affiliations to see if mass shooting incidents have different impact on people's opinion according to their party affiliations.
+Next, I put respondents into three groups by their party affiliations to see if mass shooting incidents have different impact on people's opinion according to their party affiliations.
 
 ### Democrat
 
@@ -764,10 +764,18 @@ effect_plot(gunsupport.model22, pred = z.numcase, interval = TRUE, plot.points =
 
 \vspace{6mm}
 
-## What does the data tell us about American public's opinion on the gun control issue?
+## What does the data tell us about American public's opinion shift on the gun control issue?
 
-My assumption before I started this analysis was that mass shootings incidents would alert people about the risk of the weapon falling into the wrong hands, and people might demand stricter gun conrtol law. However, the research shows the exact opposite, especially, for Republicans.
-Repubilcans demanded less strict gun control law after there was more mass shootings during certain year. It may be caused due to the repulsion since there was more discussion on the issue after mass shooting incidents. 
+My assumption before I started this analysis was that mass shootings incidents would alert people about the risk of the weapons falling into the wrong hands, and people might demand stricter gun control law. However, the research tells us a different story.
+
+For the people who affiliated themselves with Democratic Party, there was no relationship between the favor ratio to the strict gun control law and the number of mass shootings during certain year. 
+
+People who affiliated themselves with Republican and Inpendent parties demanded less strict gun control law after there was more mass shootings during certain year. It might have been caused due to the repulsion to the increased discussion on the issue after mass shooting incidents. 
+
+
+
+\vspace{6mm}
+
 
 
 
